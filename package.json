@@ -1,0 +1,36 @@
+{
+  "name": "ass-ert",
+  "version": "0.0.1",
+  "description": "Composable fluent assertions library",
+  "main": "lib/index.js",
+  "files": [
+    "LICENSE",
+    "lib/index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:drslump/ass-ert.git"
+  },
+  "dependencies": {
+    "jshamcrest": "~0.7.0",
+    "lodash": "^2.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "assert",
+    "bdd",
+    "tdd",
+    "hamcrest",
+    "test",
+    "matcher"
+  ],
+  "author": "Iván -DrSlump- Montes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drslump/ass-ert/issues"
+  },
+  "homepage": "https://github.com/drslump/ass-ert",
+  "devDependencies": {}
+}
