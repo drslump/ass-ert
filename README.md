@@ -74,8 +74,9 @@ ass.pluck('name').has('John')  // finds a person named John
 
 ### Promises
 
-By using `.then` and `.catch` we can attach matchers to the promise,
-which will be evaluated once the promise gets resolved or rejected.
+By using `.then` and `.catch` we can attach matchers to the promise
+which will only be evaluated once the promise gets resolved or
+rejected.
 
 > When working with [Mocha]() or [Jasmine 2.x]() we are allowed to
   return a promise from a test to have it consumed before the test

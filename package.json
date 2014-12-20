@@ -2,10 +2,12 @@
   "name": "ass-ert",
   "version": "0.0.1",
   "description": "Composable fluent assertions library",
-  "main": "lib/index.js",
+  "main": "main.js",
   "files": [
     "LICENSE",
-    "lib/index.js"
+    "main.js",
+    "lib/*",
+    "dist/*"
   ],
   "repository": {
     "type": "git",
@@ -15,8 +17,16 @@
     "jshamcrest": "~0.7.0",
     "lodash": "^2.4.1"
   },
+  "devDependencies": {
+    "browserify": "^7.0.3",
+    "uglify-js": "^2.4.16"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-nodeps-debug": "browserify main.js --debug --standalone ass --ignore lodash > dist/ass-ert.all.js",
+    "build-nodeps-min": "browserify main.js --standalone ass --ignore lodash | uglifyjs -c > dist/ass-ert.all.min.js",
+    "build-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.js",
+    "build-min": "browserify main.js --standalone ass | uglifyjs -c > dist/ass-ert.min.js",
+    "build": "npm run build-debug && npm run build-min"
   },
   "keywords": [
     "assert",
@@ -31,6 +41,5 @@
   "bugs": {
     "url": "https://github.com/drslump/ass-ert/issues"
   },
-  "homepage": "https://github.com/drslump/ass-ert",
-  "devDependencies": {}
+  "homepage": "https://github.com/drslump/ass-ert"
 }
