@@ -12,11 +12,13 @@ describe('ass', function () {
     it('should return an uninitialized chain when no arguments', function () {
       var obj = ass();
       ä(obj.value).is(obj.__GUARD__);
+      ä( obj.__deferred__ ).is(true);
     });
 
     it('should return initialized chain with argument', function () {
       var obj = ass('foo');
       ä(obj.value).is('foo');
+      ä( obj.__deferred__ ).is(false);
     });
 
     it('should return deferred', function () {
@@ -38,12 +40,32 @@ describe('ass', function () {
     it('should return uninitialized chain', function () {
       var obj = ass.eq(3);
       ä( obj.value ).is( obj.__GUARD__ );
+      ä( obj.__deferred__ ).is(true);
     });
 
     it('should create new instances', function () {
 
       ä( ass.true ).not.is( ass.true );
 
+    });
+
+  });
+
+  describe('pass through', function () {
+
+    it('should return original value', function () {
+
+      ä( ass('foo').$string ).is('foo');
+
+    });
+
+    it('should return asserted value', function () {
+      var exp = ass.$string;
+
+      ä( exp('foo') ).is('foo');
+
+      exp = ass.$eq('foo');
+      ä( exp('foo') ).eq('foo');
     });
 
   });

@@ -18,13 +18,23 @@ describe('Chain', function () {
     it('should return bound test', function () {
       ass.checkmarks();
 
-      fn = ass._(1).mark.number.eq(1).test;
+      var fn = ass._(1).mark.number.eq(1).test;
       ass.checkmarks(0);
 
       ass( fn() ).true;
       ass( fn(2) ).false;
       ass.checkmarks(2);
-    })
+    });
+
+    it('should return bound pass through shortcut', function () {
+      ass.checkmarks();
+
+      var fn = ass.string.equal('foo').index(0).equal('f').mark.$;
+
+      ass( fn('foo') ).is('foo');
+
+      ass.checkmarks(1);
+    });
 
   });
 
