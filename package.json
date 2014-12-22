@@ -14,7 +14,6 @@
     "url": "git@github.com:drslump/ass-ert.git"
   },
   "dependencies": {
-    "jshamcrest": "~0.7.0",
     "lodash": "^2.4.1"
   },
   "devDependencies": {
