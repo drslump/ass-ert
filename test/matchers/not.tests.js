@@ -1,4 +1,4 @@
-describe('Matchers: not', function () {
+describe.only('Matchers: not', function () {
 
   var ass = require('../../');
 
