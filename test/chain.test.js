@@ -26,7 +26,7 @@ describe('Chain', function () {
       ass.checkmarks(2);
     });
 
-    it('should return bound pass through shortcut', function () {
+    it('should return bound pass-through shortcut', function () {
       ass.checkmarks();
 
       var fn = ass.string.equal('foo').index(0).equal('f').mark.$;
