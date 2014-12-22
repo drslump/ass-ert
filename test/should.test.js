@@ -73,4 +73,30 @@ describe('should', function () {
 
   });
 
+  describe('usage', function () {
+    beforeEach(ass.should);
+    afterEach(ass.should.restore);
+
+    it('should support numbers', function () {
+      (12).should.equal(12);
+    });
+
+    it('should support strings', function () {
+      'foo'.should.equal('foo');
+    });
+
+    it('should support bools', function () {
+      true.should.equal(true);
+    });
+
+    it('should support objects', function () {
+      ({foo: 'foo'}).should.prop('foo').equal('foo');
+    });
+
+    it('should forward to chain', function () {
+      ass(true).should.be.bool;
+    });
+
+  });
+
 });
