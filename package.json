@@ -1,7 +1,7 @@
 {
   "name": "ass-ert",
   "version": "0.0.1",
-  "description": "Composable fluent assertions library",
+  "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
     "LICENSE",
