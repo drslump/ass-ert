@@ -26,7 +26,7 @@
     "lodash": "global:_"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha test/** $*",
+    "test": "node_modules/.bin/mocha test/**",
     "build-deps-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.deps.js",
     "build-debug": "browserify main.js --debug --standalone ass --transform browserify-shim > dist/ass-ert.js",
     "build-min": "uglifyjs -c -o dist/ass-ert.min.js dist/ass-ert.js && uglifyjs -c -o dist/ass-ert.deps.min.js dist/ass-ert.deps.js",

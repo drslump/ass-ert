@@ -19,6 +19,18 @@ describe('ass', function () {
       ä(obj.value).is('foo');
     });
 
+    it('should return deferred', function () {
+      var obj = ass._('foo');
+      obj.string.equal('bar');
+      ä( obj.test() ).false;
+
+      obj = ass._('foo').string.equal('foo');
+      ä( obj.__deferred__ ).true;
+      ä( obj.value ).equal('foo');
+      ä( obj.assert().value ).equal('foo');
+      ä( obj._.__deferred__ ).false;
+    });
+
   });
 
   describe('static', function () {
