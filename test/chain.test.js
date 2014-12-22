@@ -6,34 +6,34 @@ describe('Chain', function () {
   describe('bound methods', function () {
 
     it('should return bound assert', function () {
-      ass.checkmarks();
+      ass.marks();
 
       var fn = ass._(true).bool.true.mark.assert;
-      ass.checkmarks(0);
+      ass.marks(0);
 
       fn();
-      ass.checkmarks(1);
+      ass.marks(1);
     });
 
     it('should return bound test', function () {
-      ass.checkmarks();
+      ass.marks();
 
       var fn = ass._(1).mark.number.eq(1).test;
-      ass.checkmarks(0);
+      ass.marks(0);
 
       ass( fn() ).true;
       ass( fn(2) ).false;
-      ass.checkmarks(2);
+      ass.marks(2);
     });
 
     it('should return bound pass-through shortcut', function () {
-      ass.checkmarks();
+      ass.marks();
 
       var fn = ass.string.equal('foo').index(0).equal('f').mark.$;
 
       ass( fn('foo') ).is('foo');
 
-      ass.checkmarks(1);
+      ass.marks(1);
     });
 
   });
@@ -41,13 +41,13 @@ describe('Chain', function () {
   describe('underscore', function () {
 
     it('should defer evaluation', function () {
-      ass.checkmarks()
+      ass.marks()
 
       var ex = ass(true)._.mark.true;
-      ass.checkmarks(0);
+      ass.marks(0);
 
       ex._;  // now the evaluation takes place
-      ass.checkmarks(1);
+      ass.marks(1);
     });
 
   });

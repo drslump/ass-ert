@@ -58,17 +58,13 @@ describe('should', function () {
     });
 
     it('install name already used', function () {
-      ass.checkmarks();
-      try {
-        Object.prototype.should = function () {};
-        ass.should();
-      } catch (e) {
-        ass(e).error.mark;
-      } finally {
-        delete Object.prototype.should;
-      }
+      Object.prototype.should = function () {};
 
-      ass.checkmarks(1);
+      ass(function () {
+        ass.should();
+      }).raises(Error);
+
+      delete Object.prototype.should;
     });
 
   });
