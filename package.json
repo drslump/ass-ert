@@ -19,12 +19,14 @@
   "devDependencies": {
     "browserify": "^7.0.3",
     "browserify-shim": "^3.8.1",
+    "mocha": "^2.0.1",
     "uglify-js": "^2.4.16"
   },
   "browserify-shim": {
     "lodash": "global:_"
   },
   "scripts": {
+    "test": "node_modules/.bin/mocha test/** $*",
     "build-deps-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.deps.js",
     "build-debug": "browserify main.js --debug --standalone ass --transform browserify-shim > dist/ass-ert.js",
     "build-min": "uglifyjs -c -o dist/ass-ert.min.js dist/ass-ert.js && uglifyjs -c -o dist/ass-ert.deps.min.js dist/ass-ert.deps.js",
