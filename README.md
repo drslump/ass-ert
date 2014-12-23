@@ -20,7 +20,7 @@ data structures with ease.
 
 ## Failure messages
 
-Right now, it's settled up on the following format, I think it offers a clear
+Right now, it's settled down on the following format, I think it offers a clear
 view and has less corner cases than Hamcrest's almost natural language. Anyway,
 this is still an open issue and will see some tuning since having very clear
 and easily readable messages is a top priority.
@@ -104,7 +104,7 @@ they behave the same as the *expect style* ones.
   should(obj).be.null;
 
   // Unregister from the Object.prototype
-  ass.restore()
+  ass.should.restore()
 ```
 
 When working with a test runner, if you don't want to globally enable *should
