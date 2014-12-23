@@ -57,6 +57,13 @@ describe('Chain', function () {
 
     });
 
+    it('should return undefined if the evaluation fails', function () {
+
+      var ex = ass.true;
+      ass( ex.result(false) ).undefined;
+
+    });
+
   });
 
   describe('underscore', function () {

@@ -230,6 +230,32 @@ the promise is resolved and using the value provided by it.
 ```
 
 
+### Lo-Dash
+
+The library wraps Lo-Dash [_.createCallback](https://lodash.com/docs#createCallback)
+to make it understand about expression chains. This means that in every Lo-Dash
+function accepting a callback it'll now accept an *ass-ert expression*, which will
+get evaluated and return true or false.
+
+```js
+  var over18 = ass.pluck('age').moreThan(18);
+  var adults = _.filter(students, over18);
+```
+
+That works well for the whole filtering primitives but if we want to use something
+like `_.map`, it'll get just `true` or `false`. To get the mutated value from an
+expression we can use `.result()` like so:
+
+```js
+  var truncatedName = ass.pluck('name').slice(0, 20).result;
+  var result = _.map(students, truncatedName);
+```
+
+> You can use `.result`, `.test` and `.assert` with any library that expects a
+  callback receiving the value to resolve. Those methods are bound to the expression
+  so there is no need to force a context when using them.
+
+
 ### Sinon
 
 Matchers expose a `.test` method returning a boolean value which make
