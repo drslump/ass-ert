@@ -2,17 +2,16 @@
 
 > Because **assert** and even **ass** were already taken!
 
-**ass-ert** is a library of *composable* matchers offering also a
-*fluent-ish* interface.
+**ass-ert** is a library of *composable* matchers offering a *fluent-ish* interface.
 
 It tries to mix the best aspects of [Hamcrest](http://hamcrest.org/)
 with its highly composable design, featuring beautifully descriptive
 messages, and the easy on the eyes and the fingers of [chai](http://chaijs.com)'s
 fluent syntax for defining assertions.
 
-While the primary use case is testing it's by no means restricted to
-it, use the matchers anywhere you may have a need for matching complex
-data structures with ease.
+While the primary use case is testing it's by no means restricted to it, use the
+matchers anywhere you may have a need for matching complex data structures with
+ease.
 
 > If you are looking for something similar for Python have a look at
   [pyshould](https://github.com/drslump/pyshould)!
@@ -22,8 +21,8 @@ data structures with ease.
 
 Right now, it's settled down on the following format, I think it offers a clear
 view and has less corner cases than Hamcrest's almost natural language. Anyway,
-this is still an open issue and will see some tuning since having very clear
-and easily readable messages is a top priority.
+this is still an open issue and will see some tuning since having very clear and
+easily readable messages is a top priority.
 
 > This actually has colors, green for *Passed*, red for *Failed* and yellow
   for *But*, while the values are in cyan.
@@ -135,9 +134,41 @@ by composition.
     ass.array.and(
       ass.size.equal(2),
       ass.contains('foo')
+    )
   )
-)
 ```
+
+Since some matchers will mutate the value for the rest of the expression, sometimes
+we may wish to go back to a previous version of the value. By using the `.and`
+combinator we can achieve that and express complex assertions with ease:
+
+```js
+  ass(data).array.and(
+    ass.size.moreThan(10).lessThan(100),
+    ass.pluck('name').string.and(
+      ass.not.empty,
+      ass.match(/^[A-Z]/)
+    ),
+    ass.filter( ass.pluck('age').moreThan(18) ).and(
+      ass.size.equal( ass.lessThan(8) ),
+      ass.all.prop('adult').true
+    ).store(result, 'adults')  // this sets the intermediate value in result.adults
+  )
+```
+
+Here we've seen the power of composition, we've defined an expression that would
+indeed be quite a bit more complex if we did it in an *imperative* style. It
+takes a bit of effort to get familiar with the syntax but once you do it's hard
+to go back. Not only did the expression get simpler but it should hopefully
+produce easy to understand failure messages.
+
+Of course, this example was a little bit oriented towards testing, but the only
+thing that produces and assertion error is the `ass(data).` at the start, we could
+simply use `ass.` and pass the value at the end of the expression with `.test(data)`
+to get a boolean result. Even more, using `.tap(fn)` we can inject our logic
+anywhere in the expression and evaluate or mutate the values as they pass through,
+while with `.store()` we can keep the intermediate results around for further
+analysis.
 
 
 ## Quantifiers
@@ -206,6 +237,8 @@ them compatible with the [Sinon test doubles library](http://sinonjs.org).
 
 ## Troubleshooting
 
+### Logging
+
 Sometimes you can't make sense of why something doesn't work and you want to
 inspect the value it's receiving. Use `.log` to dump on the console the received
 value, `.fn(func)` to apply your own logic or `.debugger` if you have an
@@ -213,4 +246,40 @@ interactive debugger in the environment.
 
 ```js
   ass(data).log.string;  // prints the value of data before asserting
+```
+
+### Marks
+
+A common issue when testing, specially asynchronous code, is to be certain if
+the tests actually passes all the assertions or are some code paths simply
+not being executed.
+
+The *marks* feature is designed to solve this case, it's composed of two elements,
+the first is the `.mark` matcher, it just increments the marks counter every time
+the expression is evaluated. The second is `ass.marks()` which when called without
+arguments will reset a counter but when called with a number as argument will throw
+an error if it doesn't match the current value of the counter.
+
+Here is a simplified example to see how they work:
+
+```js
+  // Simple way to reset the counter automatically for each test
+  beforeEach(ass.marks);
+
+  it('should detect if callback is called', function () {
+    project.doWork(data, function (x) {
+      ass(x).equal(true).mark;  // increases the counter when evaluated
+    });
+
+    ass.marks(1);   // If the callback didn't run it'll produce an error
+  });
+```
+
+Now, if your test is more complicated and you need to somehow assert different
+marks depending on some condition, you can call `ass.marks()` and it'll reset
+the counter but also return the last count. But since we are using a *library of
+highly composable matchers* lets do it in a more interesting and flexible way:
+
+```js
+  ass.marks( ass.moreThan(3) );  // asserts that .mark was called 4 or more times
 ```
