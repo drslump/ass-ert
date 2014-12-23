@@ -1,6 +1,7 @@
 describe('Promise', function () {
 
   var ass = require('../../');
+  var _ = require('lodash');
 
   var Promise = require('es6-promise').Promise;
 
@@ -57,7 +58,7 @@ describe('Promise', function () {
 
     it('should check pending promises', function () {
       var d = defer();
-      setTimeout(d.resolve.bind(d, 'foo'), 25);
+      setTimeout(_.bind(d.resolve, d, 'foo'), 25);
 
       return ass(d.promise).resolves.eq('foo').size.eq(3);
     });
@@ -78,7 +79,7 @@ describe('Promise', function () {
 
     it('should check pending promises', function () {
       var d = defer();
-      setTimeout(d.reject.bind(d, 'foo'), 25);
+      setTimeout(_.bind(d.reject, d, 'foo'), 25);
 
       return ass(d.promise).rejects.eq('foo').size.eq(3);
     });
