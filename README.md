@@ -150,7 +150,7 @@ combinator we can achieve that and express complex assertions with ease:
       ass.match(/^[A-Z]/)
     ),
     ass.filter( ass.pluck('age').moreThan(18) ).and(
-      ass.size.equal( ass.lessThan(8) ),
+      ass.size.is( ass.lessThan(8) ),
       ass.all.prop('adult').true
     ).store(result, 'adults')  // this sets the intermediate value in result.adults
   )
