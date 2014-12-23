@@ -163,7 +163,7 @@ to go back. Not only did the expression get simpler but it should hopefully
 produce easy to understand failure messages.
 
 Of course, this example was a little bit oriented towards testing, but the only
-thing that produces and assertion error is the `ass(data).` at the start, we could
+thing that produces an assertion error is the `ass(data).` at the start, we could
 simply use `ass.` and pass the value at the end of the expression with `.test(data)`
 to get a boolean result. Even more, using `.tap(fn)` we can inject our logic
 anywhere in the expression and evaluate or mutate the values as they pass through,
@@ -201,6 +201,15 @@ mechanism with a known interface.
   ass.pluck('name').has('Juan')  // finds a person named Juan!
 ```
 
+While the expression evaluates the initial value under test may mutate but we
+can always get back the original by calling `.value`, if we're actually interested
+in the current one we can access it with `.mutation`.
+
+```js
+  var data = 'abcdef';
+  ass(data).size.value === 'abcdef'
+  ass(data).size.mutation === 6
+```
 
 ## Interoperability
 

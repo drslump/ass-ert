@@ -26,6 +26,16 @@ describe('Chain', function () {
       ass.marks(2);
     });
 
+    it('should return bound result', function () {
+      ass.marks();
+
+      var fn = ass.bool.true.mark.result;
+      ass.marks(0);
+
+      fn(true);
+      ass.marks(1);
+    });
+
     it('should return bound pass-through shortcut', function () {
       ass.marks();
 
@@ -34,6 +44,17 @@ describe('Chain', function () {
       ass( fn('foo') ).is('foo');
 
       ass.marks(1);
+    });
+
+  });
+
+  describe('result', function () {
+
+    it('should obtain the last result in the evaluation', function () {
+
+      var ex = ass.filter(ass.moreThan(3));
+      ass( ex.result([1,2,3,4,5,6]) ).eq([4,5,6]);
+
     });
 
   });
