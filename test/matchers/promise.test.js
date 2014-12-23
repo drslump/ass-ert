@@ -26,6 +26,22 @@ describe('Promise', function () {
     return resolvedFoo;
   });
 
+  describe('type', function () {
+
+    it('should detect a promise', function () {
+      ass(resolvedFoo).promise;
+      ass(rejectedFoo).promise;
+      ass({then: function() {}}).promise;
+    });
+
+    it('should be clever on the detection', function () {
+      ass({then: true}).not.promise;
+      ass({then: 'foo'}).not.promise;
+      ass({then: null}).not.promise;
+    });
+
+  });
+
   describe('fulfilled', function () {
 
     it('should check already resolved promises', function () {
@@ -39,7 +55,7 @@ describe('Promise', function () {
       return ass(d.promise).resolves.eq('foo').size.eq(3);
     });
 
-    it('should check non yet resolved promises', function () {
+    it('should check pending promises', function () {
       var d = defer();
       setTimeout(d.resolve.bind(d, 'foo'), 25);
 
@@ -47,7 +63,7 @@ describe('Promise', function () {
     });
   });
 
-  describe('unfulfilled', function () {
+  describe('rejected', function () {
 
     it('should check already rejected promises', function () {
       return ass(rejectedFoo).rejects.eq('foo').size.eq(3);
@@ -60,7 +76,7 @@ describe('Promise', function () {
       return ass(d.promise).rejects.eq('foo').size.eq(3);
     });
 
-    it('should check non yet resolved promises', function () {
+    it('should check pending promises', function () {
       var d = defer();
       setTimeout(d.reject.bind(d, 'foo'), 25);
 

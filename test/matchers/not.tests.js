@@ -1,4 +1,4 @@
-describe.only('Matchers: not', function () {
+describe('Matchers: not', function () {
 
   var ass = require('../../');
 
@@ -22,6 +22,7 @@ describe.only('Matchers: not', function () {
 
   it('should negate quantifiers', function () {
     ass.not.all.number.assert([1,null,3]);
+    ass.all.not.number.assert(['foo',null,{}]);
   });
 
 });
