@@ -1,9 +1,10 @@
 describe('Promise', function () {
 
-  var ass = require('../../');
   var _ = require('lodash');
+  
+  var ass = require('../../');
+  var Promise = require('../../lib/util').Promise;
 
-  var Promise = require('es6-promise').Promise;
 
   // Helper to make easier to factory deferreds
   function defer (value, ms) {
@@ -41,6 +42,20 @@ describe('Promise', function () {
       ass({then: true}).not.promise;
       ass({then: 'foo'}).not.promise;
       ass({then: null}).not.promise;
+    });
+
+    it('should not call getters twice', function () {
+
+      this.calls = 0;
+      Object.defineProperty(this, 'then', {
+        get: function () {
+          this.calls += 1;
+          return function () {};
+        }
+      });
+
+      ass(this).promise;
+      ass(this.calls).eq(1);
     });
 
   });

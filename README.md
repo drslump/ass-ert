@@ -323,6 +323,11 @@ asynchronous).
 
 ## Interoperability
 
+> **Note**: You can use `.result`, `.test`, `.assert` and `.through` with any
+library that expects a callback receiving the value to resolve. Those methods
+are bound to the *expression* instance so there is no need to force a scope
+when using them.
+
 ### Lo-Dash
 
 The library wraps Lo-Dash [_.createCallback](https://lodash.com/docs#createCallback)
@@ -346,11 +351,6 @@ expression we can use `.result()` like so:
 
 > `_.isEquals` is also wrapped to make it understand our *expressions*, so you
   can use it check arbitrary object structures with nested *expressions*.
-
-> **Note**: You can use `.result`, `.test`, `.assert` and `.through` with any
-  library that expects a callback receiving the value to resolve. Those methods
-  are bound to the *expression* instance so there is no need to force a scope
-  when using them.
 
 
 ### Sinon
@@ -387,7 +387,7 @@ interactive debugger in the environment.
 ### Marks
 
 A common issue when testing, specially asynchronous code, is to be certain if
-the tests actually passes all the assertions or are some code paths simply
+the tests actually pass all the assertions or are some code paths simply
 not being executed.
 
 The *marks* feature is designed to solve this case, it's composed of two
