@@ -4,14 +4,14 @@
 
 **ass-ert** is a library of *composable* matchers offering a *fluent-ish* interface.
 
-It tries to mix the best aspects of [Hamcrest](http://hamcrest.org/)
-with its highly composable design, featuring beautifully descriptive
-messages, and the easy on the eyes and the fingers of [chai](http://chaijs.com)'s
-fluent syntax for defining assertions.
+It tries to mix the best aspects of [Hamcrest](http://hamcrest.org/) with its
+highly composable design, featuring beautifully descriptive messages, and the
+easy on the eyes and the fingers of [chai](http://chaijs.com)'s fluent syntax
+for defining assertions.
 
-While the primary use case is testing it's by no means restricted to it, use the
-matchers anywhere you may have a need for matching complex data structures with
-ease.
+While the primary use case is testing it's by no means restricted to it, use
+the matchers anywhere you may have a need for matching complex data structures
+with ease.
 
 > If you are looking for something similar for Python have a look at
   [pyshould](https://github.com/drslump/pyshould)!
@@ -24,10 +24,10 @@ view and has less corner cases than Hamcrest's almost natural language. Anyway,
 this is still an open issue and will see some tuning since having very clear and
 easily readable messages is a top priority.
 
-> This actually has colors, green for *Passed*, red for *Failed* and yellow
+> This actually has colors: green for *Passed*, red for *Failed* and yellow
   for *But*, while the values are in cyan.
 
-```sh
+```
 AssError: ass([1,2,3]).all.number.above(3)
 
  Passed: For every one:
@@ -41,10 +41,11 @@ AssError: ass([1,2,3]).all.number.above(3)
  at Module._compile (module.js:456:26)
 ```
 
-> The printing of the actual expression code that produced the error and the exact
-  file location is something experimental and still on the works. It won't work in
-  all environments but V8 and Firefox at least should be covered. It'll probably
-  be released as a separate project so it can be easily used by others.
+> The printing of the actual expression code that produced the error and the
+  exact file location is something experimental and still on the works. It
+  won't work in all environments but V8 and Firefox at least should be covered.
+  It'll probably be released as a separate project so it can be easily used by
+  others.
 
 
 ## Styles
@@ -52,8 +53,8 @@ AssError: ass([1,2,3]).all.number.above(3)
 ### Assert style
 
 Not a big fan but it's nice for the occasional use, only two primitives are
-exposed in this style: `ass.ok` and `ass.ko`. The former succeeds if the
-value is *truthy* (`value == true` in Javascript), the later is the inverse.
+exposed in this style: `ass.ok` and `ass.ko`. The former succeeds if the value
+is *truthy* (`value == true` in Javascript), the later is the inverse.
 
 They come with a nice twist, they will perform the assertions and return the
 exact same value that was provided. This allows to use them to validate some
@@ -92,10 +93,10 @@ else cluttering its view. You can use *should style* expressions easily and
 they behave the same as the *expect style* ones.
 
 ```js
-  // Install .should on Object.prototype and assign the static interface
-  // to the `should` variable. (NOTE: it's a function and it must be called!)
-  // Additionally by passing a custom name it'll be registered instead of `should`
-  var should = require('ass').should();
+  // Install .should on Object.prototype and assign the static interface to the
+  // `should` variable. Additionally by passing a custom name it'll be used as
+  // property name instead of `should`.
+  var should = require('ass').should();  // NOTE: the function must be called!
 
   "foo".should.be.a.string;
   [1,2,3].should.contain(2);
@@ -122,8 +123,8 @@ style* expressions, you can simply use this on your tests:
 ## Coordination
 
 As your data structures get more complex **ass** won't be left behind.
-Coordinate assertions with **or**/**and** to fully express the assertion
-by composition.
+Coordinate expressions with **or** / **and** to fully express the assertion by
+composition.
 
 > **Note**: fluent matcher chaining is implicitly evaluated as **and**.
 
@@ -138,9 +139,10 @@ by composition.
   )
 ```
 
-Since some matchers will mutate the value for the rest of the expression, sometimes
-we may wish to go back to a previous version of the value. By using the `.and`
-combinator we can achieve that and express complex assertions with ease:
+Since some matchers will mutate the value for the rest of the expression,
+sometimes we may wish to go back to a previous version of the value. By using
+the `.and` combinator we can achieve that and express complex assertions with
+ease:
 
 ```js
   ass(data).array.and(
@@ -173,8 +175,8 @@ analysis.
 
 ## Quantifiers
 
-It's very common to work with collections (i.e. Arrays) so it should be
-easy to match against them.
+It's very common to work with collections (i.e. Arrays) so it should be easy to
+match against them.
 
 ```js
   ass(data).some.equal(10);   // At least one equals 10
@@ -185,9 +187,9 @@ easy to match against them.
 
 ## Mutating the subject
 
-Often times we want to check a specific aspect of a value but when doing
-the processing manually we will loose the nice error descriptions given by
-the matchers.
+Often times we want to check a specific aspect of a value but when doing the
+processing manually we will loose the nice error descriptions given by the
+matchers.
 
 **ass** integrates [LoDash](lodash.com) to provide a powerful data manipulation
 mechanism with a known interface.
@@ -202,8 +204,8 @@ mechanism with a known interface.
 ```
 
 While the expression evaluates the initial value under test may mutate but we
-can always get back the original by calling `.value`, if we're actually interested
-in the current one we can access it with `.mutation`.
+can always get back the original by calling `.value`, if we're actually
+interested in the current one we can access it with `.mutation`.
 
 ```js
   var data = 'abcdef';
@@ -234,8 +236,8 @@ the promise is resolved and using the value provided by it.
 
 The library wraps Lo-Dash [_.createCallback](https://lodash.com/docs#createCallback)
 to make it understand about expression chains. This means that in every Lo-Dash
-function accepting a callback it'll now accept an *ass-ert expression*, which will
-get evaluated and return true or false.
+function accepting a callback it'll now accept an *ass-ert expression*, which
+will get evaluated and return true or false.
 
 ```js
   var over18 = ass.pluck('age').moreThan(18);
@@ -251,9 +253,9 @@ expression we can use `.result()` like so:
   var result = _.map(students, truncatedName);
 ```
 
-> You can use `.result`, `.test` and `.assert` with any library that expects a
-  callback receiving the value to resolve. Those methods are bound to the expression
-  so there is no need to force a context when using them.
+> You can use `.result`, `.test`, `.assert` and `.through` with any library that
+  expects a callback receiving the value to resolve. Those methods are bound to
+  the expression so there is no need to force a context when using them.
 
 
 ### Sinon
@@ -289,11 +291,12 @@ A common issue when testing, specially asynchronous code, is to be certain if
 the tests actually passes all the assertions or are some code paths simply
 not being executed.
 
-The *marks* feature is designed to solve this case, it's composed of two elements,
-the first is the `.mark` matcher, it just increments the marks counter every time
-the expression is evaluated. The second is `ass.marks()` which when called without
-arguments will reset a counter but when called with a number as argument will throw
-an error if it doesn't match the current value of the counter.
+The *marks* feature is designed to solve this case, it's composed of two
+elements, the first is the `.mark` matcher, it just increments the marks counter
+every time the expression is evaluated. The second is `ass.marks()` which when
+called without arguments will reset a counter but when called with a number as
+argument will throw an error if it doesn't match the current value of the
+counter.
 
 Here is a simplified example to see how they work:
 
