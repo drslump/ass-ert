@@ -71,7 +71,7 @@ describe('ass', function () {
     it('should assert if mismatch', function () {
 
       ä(function () {
-        ass.$string(10)
+        ass.$string(10);
       }).raises(ass.Error);
 
     });
