@@ -1,7 +1,7 @@
 describe('Promise', function () {
 
   var _ = require('lodash');
-  
+
   var ass = require('../../');
   var Promise = require('../../lib/util').Promise;
 

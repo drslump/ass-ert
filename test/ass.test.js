@@ -150,7 +150,7 @@ describe('ass', function () {
       ass.ok( "foo" );
       ass.ok( 1 );
       ass.ok( {} );
-      ass.ok( [] );
+      ass.ok( [10] );
 
     });
 
@@ -176,6 +176,7 @@ describe('ass', function () {
       ass.ko( false );
       ass.ko( "" );
       ass.ko( 0 );
+      ass.ko( [] );
       ass.ko( null );
       ass.ko( undefined );
 
