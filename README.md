@@ -54,8 +54,8 @@ Without going into the internals of the library, just to be able to understand
 correctly the language in the documentation, these are some of terms and concepts
 used:
 
-  - *Matcher*: abstract definition of some test (i.e. "equals something")
-  - *Expectation*: concrete instance of a *matcher* (i.e. "equals 10")
+  - *Matcher*: abstract definition of some test (i.e. "equals something").
+  - *Expectation*: concrete instance of a *matcher* (i.e. "equals 10").
   - *Expression*: chain of *expectations* (1 or more) that are evaluated from
     left to right and stops on the first *expectation* that fails.
   - *Resolver*: the algorithm that traverses an *expression* and produces a boolean
@@ -131,8 +131,8 @@ they behave the same as the *expect style* ones.
 
   should(obj).be.null;
 
-  // Unregister from the Object.prototype
-  ass.should.restore()
+  // Unregister should from Object.prototype
+  ass.should.restore();
 ```
 
 When working with a test runner, if you don't want to globally enable *should
@@ -173,6 +173,8 @@ the `.and` combinator we can achieve that and express complex assertions with
 ease:
 
 ```js
+  # Note: pluck mutates the value to be the one of the specific property for all elements
+  #       in the array.
   ass(data).array.and(
     ass.size.moreThan(10).lessThan(100),
     ass.pluck('name').string.and(
@@ -183,7 +185,7 @@ ease:
       ass.size.is( ass.lessThan(8) ),
       ass.all.prop('adult').true
     ).store(result, 'adults')  // this sets the intermediate value in result.adults
-  )
+  );
 ```
 
 Here we've seen the power of composition, we've defined an *expression* that
@@ -205,7 +207,7 @@ for further analysis.
 
 When using `.not` in an *expression* we are not actually mutating the *subject*,
 what it does is allow the resolver to continue and when a result has finally been
-found it'll inverse it before we obtain it. It's indeed negating the rest of the
+found it'll inverse it before we obtain it. It's indeed negating the result of the
 *expression*.
 
 ```js
@@ -243,7 +245,7 @@ Often times we want to check a specific aspect of a value but when doing the
 processing manually we will loose the nice error descriptions given by the
 matchers.
 
-**ass** integrates [LoDash](lodash.com) to provide a powerful data manipulation
+**ass** integrates [LoDash](http://lodash.com) to provide a powerful data manipulation
 mechanism with a known interface.
 
 > **Note:** When the subject is mutated it stays that way for the following
@@ -261,15 +263,15 @@ interested in the current one we can access it with `.mutation`.
 
 ```js
   var data = 'abcdef';
-  ass(data).size.value === 'abcdef'
-  ass(data).size.mutation === 6
+  ass(data).size.value === 'abcdef';
+  ass(data).size.mutation === 6;
 ```
 
 ## Asynchronous expressions
 
 When an *expectation* needs to test something asynchronous, for instance testing
 the result from a *promise*, the *expresion* will resolve as *undefined*. At this
-point we don't know if the *expression* succeeded or failed, in order to know the
+point we don't know if the *expression* succeeded or failed; in order to know the
 actual result we simply need to use the familiar Promise/A interface supported
 by the *expression*.
 
@@ -292,7 +294,7 @@ it's part of the *expression* interface just like `.test` or `.assert`.
 
 > **Important**: We divert from the Promise/A specification in that callback
   functions registered with `.then` will be called **each and every time** the
-  *expression* is resolved. The reassoning is that the `.then` is targetting
+  *expression* is resolved. The reasoning is that the `.then` is targetting
   the *expression*, which is an abstract form until it gets resolved.
 
 ### Testing Promises
@@ -360,7 +362,7 @@ them compatible with the [Sinon test doubles library](http://sinonjs.org).
 
 ```js
   var callback = sinon.stub();
-  callback.withArgs(ass.string.contains('foo')).returns(true)
+  callback.withArgs(ass.string.contains('foo')).returns(true);
   callback.withArgs(ass.has({
     foo: ass.number
   })).returns(null);
@@ -414,7 +416,7 @@ Here is a simplified example to see how they work:
 Now, if your test is more complicated and you need to somehow assert different
 marks depending on some condition, you can call `ass.marks()` and it'll reset
 the counter but also return the last count. But since we are using a *library of
-highly composable matchers* lets do it in a more interesting and flexible way:
+highly composable matchers* let's do it in a more interesting and flexible way:
 
 ```js
   ass.marks( ass.above(3) );  // asserts that .mark was called 4 or more times
