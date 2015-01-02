@@ -21,7 +21,8 @@ with ease.
 
 ## Documentation
 
-Check out the documentation for additional details about the library.
+Check out [the documentation](https://drslump.github.io/ass-ert/) for additional
+details about the library.
 
 ## License
 
