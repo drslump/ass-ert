@@ -157,15 +157,15 @@ when using them.</p>
 to make it understand about expression chains. This means that in every Lo-Dash
 function accepting a callback it'll now accept an <em>expression</em>, which will get
 automatically evaluated every time it's used by Lo-Dash.</p>
-<pre><code class="js">var over18 = ass.pluck('age').moreThan(18);
+<pre><code class="js">var over18 = ass.prop('age').above(18);
 var adults = _.filter(students, over18);
 </code></pre>
 
 <p>That works well for the whole filtering primitives but if we want to use something
 like <code>_.map</code>, it'll get just <code>true</code> or <code>false</code>. To get the mutated value from an
 expression we can use <code>.result()</code> like so:</p>
-<pre><code class="js">var truncatedName = ass.pluck('name').slice(0, 20).result;
-var result = _.map(students, truncatedName);
+<pre><code class="js">var truncateName = ass.prop('name').slice(0, 20).result;
+var result = _.map(students, truncateName);
 </code></pre>
 
 <div class="admonition hint">
