@@ -14,7 +14,7 @@ function accepting a callback it'll now accept an *expression*, which will get
 automatically evaluated every time it's used by Lo-Dash.
 
 ```js
-var over18 = ass.pluck('age').moreThan(18);
+var over18 = ass.prop('age').above(18);
 var adults = _.filter(students, over18);
 ```
 
@@ -23,8 +23,8 @@ like `_.map`, it'll get just `true` or `false`. To get the mutated value from an
 expression we can use `.result()` like so:
 
 ```js
-var truncatedName = ass.pluck('name').slice(0, 20).result;
-var result = _.map(students, truncatedName);
+var truncateName = ass.prop('name').slice(0, 20).result;
+var result = _.map(students, truncateName);
 ```
 
 !!! hint
