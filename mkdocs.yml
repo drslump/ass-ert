@@ -1,0 +1,22 @@
+site_name: ass-ert documentation
+repo_url: https://github.com/drslump/ass-ert
+site_description: Fluently composable assertions library
+site_author: Iván -DrSlump- Montes
+theme: readthedocs
+markdown_extensions:
+  - sane_lists
+  - admonition
+  - def_list
+  - wikilinks
+pages:
+  - index.md
+  - styles.md
+  - failures.md
+  - composability.md
+  - mutation.md
+  - negation.md
+  - combinators.md
+  - quantifiers.md
+  - async.md
+  - interoperability.md
+  - troubleshooting.md
