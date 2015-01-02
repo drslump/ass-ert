@@ -17,7 +17,9 @@
     "lodash": "^2.4.1",
     "es6-promise": "^2.0.1"
   },
+  "//": "NOTE: miller-rabin is explicetely provided to work-around a bug with browserify deps",
   "devDependencies": {
+    "miller-rabin": "1.1.1",
     "browserify": "^7.0.3 < 8",
     "browserify-shim": "^3.8.1",
     "karma": "^0.12.28",
