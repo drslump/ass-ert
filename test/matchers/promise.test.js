@@ -146,5 +146,4 @@ describe('Promise', function () {
 
   });
 
-
 });
