@@ -1,5 +1,7 @@
 # ass-ert
 
+[![Build Status](https://travis-ci.org/drslump/ass-ert.svg)](https://travis-ci.org/drslump/ass-ert)
+
 > Because **assert** and even **ass** were already taken!
 
 **ass-ert** is a library of *composable* matchers offering a *fluent-ish* interface.
