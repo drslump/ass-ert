@@ -11,9 +11,10 @@ ass('foo').not.number;
 ass(promise).not.resolves.string.equal('foo');
 ```
 
-> Negating an initialized expression may produce unexpected effects, basically
-for synchronous initialized expressions the *evaluator* runs for every new
-expectation we attach to it.
+!!! caution
+    Negating an initialized expression may produce unexpected effects, basically
+    for synchronous initialized expressions the *evaluator* runs for every new
+    expectation we attach to it.
 
 ```js
 // This one won't work since .string is true and will be evaluated before

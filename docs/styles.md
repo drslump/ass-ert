@@ -46,19 +46,21 @@ they behave the same as the *expect style* ones.
 // Install .should on Object.prototype and assign the static interface to the
 // `should` variable. Additionally by passing a custom name it'll be used as
 // property name instead of `should`.
-var should = require('ass').should();  // NOTE: the function must be called!
+var ass = require('ass').should();  // NOTE: the function must be called!
 
 "foo".should.be.a.string;
 [1,2,3].should.contain(2);
 
-should(obj).be.null;
+// We can't use .should if the value is null or undefined
+ass(obj).be.null;
 
 // Unregister should from Object.prototype
 ass.should.restore();
 ```
 
-When working with a test runner, if you don't want to globally enable *should
-style* expressions, you can simply use this on your tests:
+!!! hint
+    When working with a test runner, if you don't want to globally enable
+    *should style* expressions, you can simply use this on your tests
 
 ```js
 beforeEach(ass.should);

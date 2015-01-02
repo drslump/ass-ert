@@ -23,10 +23,11 @@ with the expression, normally the chained properties only take effect when the
 *expression* reaches that point while evaluating but `.then` is not an *expectation*,
 it's part of the *expression* interface just like `.test` or `.assert`.
 
-> **Important**: We divert from the Promise/A specification in that callback
-functions registered with `.then` will be called **each and every time** the
-*expression* is resolved. The reasoning is that the `.then` is targetting
-the *expression*, which is an abstract form until it gets resolved.
+!!! caution
+    We divert from the Promise/A specification in that callback functions
+    registered with `.then` will be called **each and every time** the
+    *expression* is resolved. The reasoning is that the `.then` is targeting
+    the *expression*, which is an abstract form until it gets resolved.
 
 
 ### Testing Promises
@@ -40,10 +41,11 @@ In other words, every *expectation* chained after `.resolves` or `.rejects` will
 be only tested once the promise is resolved and will mutate the subject value to
 be whatever the promise resolves to.
 
-> When working with [Mocha](http://mochajs.org) or [Jasmine 2.x](http://jasmine.github.io)
-we are allowed to return a promise from a test and have it consumed before the
-test ends. Just return any *ass* expression to have it evaluated (even if it's not
-asynchronous).
+!!! hint
+    When working with [Mocha](http://mochajs.org) or [Jasmine 2.x](http://jasmine.github.io)
+    we are allowed to return a promise from a test and have it consumed before the
+    test ends. Just return any *ass* expression to have it evaluated (even if it's not
+    asynchronous).
 
 ```js
 it('should fetch page asynchronously and test it', function () {

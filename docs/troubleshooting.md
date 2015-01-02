@@ -11,6 +11,17 @@ interactive debugger in the environment.
 ass(data).log.string;  // prints the value of data before asserting
 ```
 
+For a finer control of the output we can supply a template to `.dump` that will
+be interpolated using the current value.
+
+```js
+// Prints "X: 10, Y: 17"
+ass(mouseevent).dump('X: ${pageX}, Y: ${pageY}')
+// Prints "Value: foo"
+ass('foo').dump('Value: ${this}')
+```
+
+
 ## Marks
 
 A common issue when testing, specially asynchronous code, is to be certain if

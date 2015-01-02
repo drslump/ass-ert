@@ -7,8 +7,10 @@ matchers.
 **ass** integrates [LoDash](http://lodash.com) to provide a powerful data manipulation
 mechanism with a known interface.
 
-> **Note:** When the subject is mutated it stays that way for the following
-matchers in the chain. If you have other needs check out the `.and` coordinator.
+!!! hint
+    When the subject is mutated it stays that way for the following
+    matchers in the chain. If you have other needs check out the `.and`
+    coordinator.
 
 
 ```js

@@ -1,9 +1,10 @@
 # Interoperability
 
-> **Note**: You can use `.result`, `.test`, `.assert` and `.through` with any
-library that expects a callback receiving the value to resolve. Those methods
-are bound to the *expression* instance so there is no need to force a scope
-when using them.
+!!! hint
+    You can use `.result`, `.test`, `.assert` and `.through` with any library
+    that expects a callback receiving the value to resolve. Those methods
+    are bound to the *expression* instance so there is no need to force a scope
+    when using them.
 
 ### Lo-Dash
 
@@ -26,13 +27,14 @@ var truncatedName = ass.pluck('name').slice(0, 20).result;
 var result = _.map(students, truncatedName);
 ```
 
-> `_.isEquals` is also wrapped to make it understand our *expressions*, so you
-can use it check arbitrary object structures with nested *expressions*.
+!!! hint
+    `_.isEquals` is also wrapped to make it understand our *expressions*, so you
+    can use it to check arbitrary object structures with nested *expressions*.
 
 
 ### Sinon
 
-Matchers expose a `.test` method returning a boolean value which make
+*Expressions* expose a `.test` method returning a boolean value which make
 them compatible with the [Sinon test doubles library](http://sinonjs.org).
 
 ```js
@@ -43,6 +45,7 @@ callback.withArgs(ass.has({
 })).returns(null);
 ```
 
-> Note: Actually `.test` may return `undefined` when resolving an asynchronous
-*expression*, however since Sinon doesn't have that concept it'll be coerced
-into a failed evaluation.
+!!! caution
+    Actually `.test` may return `undefined` when resolving an asynchronous
+    *expression*, however since Sinon doesn't have that concept it'll be coerced
+    into a failed evaluation.

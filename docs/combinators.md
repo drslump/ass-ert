@@ -4,7 +4,8 @@ As your data structures get more complex **ass** won't be left behind.
 Coordinate expressions with **or** / **and** to fully express the assertion by
 composition.
 
-> Note: fluent *expectation* chaining is implicitly evaluated as **and**.
+!!! hint
+    fluent *expectation* chaining is implicitly evaluated as **and**.
 
 ```js
 ass(data).or(
