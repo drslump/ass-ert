@@ -145,12 +145,13 @@
           <div role="main">
             <div class="section">
               <h1 id="interoperability">Interoperability</h1>
-<blockquote>
-<p><strong>Note</strong>: You can use <code>.result</code>, <code>.test</code>, <code>.assert</code> and <code>.through</code> with any
-library that expects a callback receiving the value to resolve. Those methods
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can use <code>.result</code>, <code>.test</code>, <code>.assert</code> and <code>.through</code> with any library
+that expects a callback receiving the value to resolve. Those methods
 are bound to the <em>expression</em> instance so there is no need to force a scope
 when using them.</p>
-</blockquote>
+</div>
 <h3 id="lo-dash">Lo-Dash</h3>
 <p>The library wraps Lo-Dash <a href="https://lodash.com/docs#createCallback">_.createCallback</a>
 to make it understand about expression chains. This means that in every Lo-Dash
@@ -167,12 +168,13 @@ expression we can use <code>.result()</code> like so:</p>
 var result = _.map(students, truncatedName);
 </code></pre>
 
-<blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
 <p><code>_.isEquals</code> is also wrapped to make it understand our <em>expressions</em>, so you
-can use it check arbitrary object structures with nested <em>expressions</em>.</p>
-</blockquote>
+can use it to check arbitrary object structures with nested <em>expressions</em>.</p>
+</div>
 <h3 id="sinon">Sinon</h3>
-<p>Matchers expose a <code>.test</code> method returning a boolean value which make
+<p><em>Expressions</em> expose a <code>.test</code> method returning a boolean value which make
 them compatible with the <a href="http://sinonjs.org">Sinon test doubles library</a>.</p>
 <pre><code class="js">var callback = sinon.stub();
 callback.withArgs(ass.string.contains('foo')).returns(true);
@@ -181,11 +183,12 @@ callback.withArgs(ass.has({
 })).returns(null);
 </code></pre>
 
-<blockquote>
-<p>Note: Actually <code>.test</code> may return <code>undefined</code> when resolving an asynchronous
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Actually <code>.test</code> may return <code>undefined</code> when resolving an asynchronous
 <em>expression</em>, however since Sinon doesn't have that concept it'll be coerced
 into a failed evaluation.</p>
-</blockquote>
+</div>
 
             </div>
           </div>

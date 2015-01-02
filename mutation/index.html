@@ -150,10 +150,12 @@ processing manually we will loose the nice error descriptions given by the
 matchers.</p>
 <p><strong>ass</strong> integrates <a href="http://lodash.com">LoDash</a> to provide a powerful data manipulation
 mechanism with a known interface.</p>
-<blockquote>
-<p><strong>Note:</strong> When the subject is mutated it stays that way for the following
-matchers in the chain. If you have other needs check out the <code>.and</code> coordinator.</p>
-</blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>When the subject is mutated it stays that way for the following
+matchers in the chain. If you have other needs check out the <code>.and</code>
+coordinator.</p>
+</div>
 <pre><code class="js">ass(data).size.eq(10)          // a collection with a size of 10
 ass.pluck('name').has('Juan')  // finds a person named Juan!
 </code></pre>

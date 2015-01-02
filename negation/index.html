@@ -154,11 +154,12 @@ found it'll inverse it before we obtain it. It's indeed negating the result of t
 ass(promise).not.resolves.string.equal('foo');
 </code></pre>
 
-<blockquote>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
 <p>Negating an initialized expression may produce unexpected effects, basically
 for synchronous initialized expressions the <em>evaluator</em> runs for every new
 expectation we attach to it.</p>
-</blockquote>
+</div>
 <pre><code class="js">// This one won't work since .string is true and will be evaluated before
 // we can reach the .equal that would resolve as false.
 ass('foo').not.string.equal('bar')

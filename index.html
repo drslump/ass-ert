@@ -157,28 +157,45 @@ with ease.</p>
 <p>Without going into the internals of the library, just to be able to understand
 correctly the language in the documentation, these are some of terms and concepts
 used:</p>
-<ul>
-<li><em>Matcher</em>: abstract definition of some test (i.e. "equals something").</li>
-<li><em>Expectation</em>: concrete instance of a <em>matcher</em> (i.e. "equals 10").</li>
-<li><em>Expression</em>: chain of <em>expectations</em> (1 or more) that are evaluated from
-left to right and stops on the first <em>expectation</em> that fails.</li>
-<li><em>Resolver</em>: the algorithm that traverses an <em>expression</em> and produces a boolean
-result from it.</li>
-<li><em>Subject</em>: refers to the value we're testing the expression against.</li>
-</ul>
+<dl>
+<dt><em>Matcher</em></dt>
+<dd>abstract definition of some test (i.e. "equals something").</dd>
+<dt><em>Expectation</em></dt>
+<dd>concrete instance of a <em>matcher</em> (i.e. "equals 10").</dd>
+<dt><em>Expression</em></dt>
+<dd>chain of <em>expectations</em> (1 or more) that are evaluated from
+  left to right and stops on the first <em>expectation</em> that fails.</dd>
+<dt><em>Resolver</em></dt>
+<dd>the algorithm that traverses an <em>expression</em> and produces a boolean
+  result from it.</dd>
+<dt><em>Subject</em></dt>
+<dd>refers to the value we're testing the expression against.</dd>
+</dl>
 <p>Unless you want to create your own <em>matchers</em> the only concept you'll be working
 with are <em>expressions</em>. An <em>expression</em> can have three possible results when
 resolved:</p>
-<ul>
-<li><strong>true</strong>: All the <em>expectations</em> were run and tested that the data was valid</li>
-<li><strong>false</strong>: One of the <em>expectations</em> failed its test on the data. Since
-<em>expressions</em> are short-circuited, not all the <em>expectations</em> are guaranteed
-to have been tested, this is similar to most programming languages so it
-should be a familiar behaviour (ie: <code>false &amp;&amp; work()</code>, work is never executed).</li>
-<li><strong>undefined</strong>: An asynchronous <em>expectation</em> (i.e. Promises) has taken control
-of the <em>resolver</em> and it'll produce a true/false result at a later point via
-the own <em>Promises/A</em> interface of the <em>expression</em>.</li>
-</ul>
+<dl>
+<dt><strong>true</strong></dt>
+<dd>All the <em>expectations</em> were run and tested that the data was valid</dd>
+<dt><strong>false</strong></dt>
+<dd>One of the <em>expectations</em> failed its test on the data. Since
+  <em>expressions</em> are short-circuited, not all the <em>expectations</em> are guaranteed
+  to have been tested, this is similar to most programming languages so it
+  should be a familiar behaviour (ie: <code>false &amp;&amp; work()</code>, work is never executed).</dd>
+<dt><strong>undefined</strong></dt>
+<dd>An asynchronous <em>expectation</em> (i.e. Promises) has taken control
+  of the <em>resolver</em> and it'll produce a true/false result at a later point via
+  the own <em>Promises/A</em> interface of the <em>expression</em>.</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Right now there isn't a complete documentation for all the matchers
+supported in the library. You can inspect the self generated help though:</p>
+</div>
+<pre><code class="js">ass = require('ass-ert');
+console.log(ass.help);
+</code></pre>
+
 
             </div>
           </div>

@@ -148,9 +148,10 @@
 <p>As your data structures get more complex <strong>ass</strong> won't be left behind.
 Coordinate expressions with <strong>or</strong> / <strong>and</strong> to fully express the assertion by
 composition.</p>
-<blockquote>
-<p>Note: fluent <em>expectation</em> chaining is implicitly evaluated as <strong>and</strong>.</p>
-</blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>fluent <em>expectation</em> chaining is implicitly evaluated as <strong>and</strong>.</p>
+</div>
 <pre><code class="js">ass(data).or(
   ass.string,
   ass.number.lessThan(12),

@@ -165,12 +165,13 @@ ass(req).resolves.plain.prop('name').eq('Iván')
 with the expression, normally the chained properties only take effect when the
 <em>expression</em> reaches that point while evaluating but <code>.then</code> is not an <em>expectation</em>,
 it's part of the <em>expression</em> interface just like <code>.test</code> or <code>.assert</code>.</p>
-<blockquote>
-<p><strong>Important</strong>: We divert from the Promise/A specification in that callback
-functions registered with <code>.then</code> will be called <strong>each and every time</strong> the
-<em>expression</em> is resolved. The reasoning is that the <code>.then</code> is targetting
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>We divert from the Promise/A specification in that callback functions
+registered with <code>.then</code> will be called <strong>each and every time</strong> the
+<em>expression</em> is resolved. The reasoning is that the <code>.then</code> is targeting
 the <em>expression</em>, which is an abstract form until it gets resolved.</p>
-</blockquote>
+</div>
 <h3 id="testing-promises">Testing Promises</h3>
 <p>By using <code>.resolves</code> and <code>.rejects</code> we can attach <em>expectations</em> to a promise
 object, the <em>expression</em> will automatically enter the <em>async mode</em> and will
@@ -180,12 +181,13 @@ now using the value transfered by the promise.
 In other words, every <em>expectation</em> chained after <code>.resolves</code> or <code>.rejects</code> will
 be only tested once the promise is resolved and will mutate the subject value to
 be whatever the promise resolves to.</p>
-<blockquote>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
 <p>When working with <a href="http://mochajs.org">Mocha</a> or <a href="http://jasmine.github.io">Jasmine 2.x</a>
 we are allowed to return a promise from a test and have it consumed before the
 test ends. Just return any <em>ass</em> expression to have it evaluated (even if it's not
 asynchronous).</p>
-</blockquote>
+</div>
 <pre><code class="js">it('should fetch page asynchronously and test it', function () {
   var promise = $.get('http://google.com');
   return ass(promise).resolves.string.contains('&lt;body&gt;');

@@ -153,6 +153,14 @@ interactive debugger in the environment.</p>
 <pre><code class="js">ass(data).log.string;  // prints the value of data before asserting
 </code></pre>
 
+<p>For a finer control of the output we can supply a template to <code>.dump</code> that will
+be interpolated using the current value.</p>
+<pre><code class="js">// Prints &quot;X: 10, Y: 17&quot;
+ass(mouseevent).dump('X: ${pageX}, Y: ${pageY}')
+// Prints &quot;Value: foo&quot;
+ass('foo').dump('Value: ${this}')
+</code></pre>
+
 <h2 id="marks">Marks</h2>
 <p>A common issue when testing, specially asynchronous code, is to be certain if
 the tests actually pass all the assertions or are some code paths simply
