@@ -7,16 +7,11 @@ describe('Matchers: not', function () {
     ass.not.number.assert('foo');
   });
 
-  it('TODO: should negate the following expectations', function () {
-    // TODO: This could probably be solved if we implement some kind of
-    //       state tracking for continuing evaluations from where we left off.
-    // ass('foo').not.string.equal('bar');
+  it('should negate the following expectations', function () {
     ass.not.string.equal('bar').assert('foo');
   });
 
   it('should negate the negation', function () {
-    // TODO: see above
-    // ass('foo').not.string.equal('bar');
     ass.not.not.equal('foo').assert('foo');
   });
 

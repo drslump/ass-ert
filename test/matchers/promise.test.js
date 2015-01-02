@@ -122,6 +122,24 @@ describe('Promise', function () {
         .string.eq('qux');
     });
 
+    it.skip('should support AND coordinator', function () {
+      this.expected = 3;
+      return ass(resolvedFoo).and(
+        ass.promise.mark,
+        ass.resolves.equal('foo').mark,
+        ass.resolves.string.mark
+      );
+    });
+
+    it.skip('should support OR coordinator', function () {
+      this.expected = 3;
+      return ass(resolvedFoo).or(
+        ass.string.mark,
+        ass.resolves.equal('bar').mark,
+        ass.resolves.string.mark
+      );
+    });
+
   });
 
   describe('rejected', function () {
