@@ -16,8 +16,16 @@ describe('Matchers: lodash', function () {
 
   describe('_.isEqual', function () {
 
-    it.skip('sanity', function () {
+    it('sanity', function () {
+      ass.ok( _.isEqual('foo', 'foo') );
+      ass.ok( _.isEqual(true, true) );
+      ass.ok( _.isEqual([10], [10]) );
+      ass.ok( _.isEqual({foo: 'foo'}, {foo: 'foo'}) );
 
+      ass.ko( _.isEqual('foo', 'bar') );
+      ass.ko( _.isEqual(true, false) );
+      ass.ko( _.isEqual([10], [20]) );
+      ass.ko( _.isEqual({foo: 'foo'}, {foo: 'bar'}) );
     });
 
     it('should support chains', function () {
@@ -40,12 +48,24 @@ describe('Matchers: lodash', function () {
 
   describe('_.createCallback', function () {
 
-    it.skip('sanity', function () {
-      // prop names, functions and where style
+    it('sanity', function () {
+      ass(
+        _.pluck(data, 'key')
+      ).eql( ['foo', 'bar'] );
+
+      ass(
+        _.filter(data, {key: 'bar'})
+      ).at(0).is(data[1]);
+
+      ass(
+        _.filter(data, function (x) { return x.key === 'bar'; })
+      ).at(0).is(data[1]);
     });
 
-    it.skip('should support chains', function () {
-
+    it('should support chains', function () {
+      ass(
+        _.filter(data, ass.prop('key').eq('bar'))
+      ).at(0).is(data[1]);
     });
 
   });
@@ -62,7 +82,5 @@ describe('Matchers: lodash', function () {
     });
 
   });
-
-
 
 });
