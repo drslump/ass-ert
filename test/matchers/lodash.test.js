@@ -83,4 +83,24 @@ describe('Matchers: lodash', function () {
 
   });
 
+  describe('.pluck', function () {
+
+    it('should support lists of objects', function () {
+      ass(data).pluck('key').eq(['foo', 'bar']);
+    });
+
+  });
+
+  describe('.invoke', function () {
+
+    it('should support simple calls', function () {
+      ass(['foo', 'bar']).invoke('toUpperCase').eq(['FOO', 'BAR']);
+    });
+
+    it('should support calls with arguments', function () {
+      ass([10, 15]).invoke('toString', 16).eq(['a', 'f']);
+    });
+
+  });
+
 });

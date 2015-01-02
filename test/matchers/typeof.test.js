@@ -10,6 +10,7 @@ describe('Matchers: typeof', function () {
     ass(parseInt('foo')).typeof('number');
     ass('foo').typeof('string');
     ass(true).typeof('boolean');
+    ass(it).typeof('function');
   });
 
   it('numbers', function () {
@@ -18,7 +19,9 @@ describe('Matchers: typeof', function () {
   });
 
   it('NaN is not a number', function () {
-    ass(parseInt('foo')).not.number;
+    var nan = parseInt('foo');
+    ass(nan).not.number;
+    ass(nan).NaN;
   });
 
   it('strings', function () {
@@ -29,11 +32,25 @@ describe('Matchers: typeof', function () {
   it('booleans', function () {
     ass(true).bool.true;
     ass(false).bool.false;
+    ass(new Boolean(true)).bool.true;
   });
 
   it('arrays', function () {
     ass([]).array;
+    ass(new Array).array;
     ass(arguments).not.array;
+  });
+
+  it('functions', function () {
+    ass(it).function;
+    ass(new Function).function;
+  });
+
+  it('object', function () {
+    ass({}).object;
+    ass({}).plain;
+    ass(this).object;
+    ass(this).not.plain;
   });
 
 });
