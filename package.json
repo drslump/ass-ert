@@ -32,7 +32,9 @@
     "uglify-js": "^2.4.16"
   },
   "browserify-shim": {
-    "lodash": "global:_"
+    "lodash": "global:_",
+    "es6-promise": "global:window",
+    "mocha": "global:Mocha"
   },
   "scripts": {
     "test": "node_modules/.bin/mocha test/**",
