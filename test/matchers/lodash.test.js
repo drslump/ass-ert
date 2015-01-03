@@ -103,4 +103,57 @@ describe('Matchers: lodash', function () {
 
   });
 
+  describe('.min', function () {
+
+      it('should provide the min value of a collection', function () {
+        ass([10,30,1]).min.eq(1);
+      });
+
+  });
+
+  describe('.max', function () {
+
+    it('should provide the max value of a collection', function () {
+      ass([10,30,1]).max.eq(30);
+    });
+
+  });
+
+  describe('.first', function () {
+
+    it('should provide the first value of a collection', function () {
+      ass([10,30,1]).first.eq(10);
+    });
+
+  });
+
+  describe('.last', function () {
+
+    it('should provide the last value of a collection', function () {
+      ass([10,30,1]).last.eq(1);
+    });
+
+  });
+
+  describe('.rest', function () {
+
+    it('should provide the rest of a collection', function () {
+      ass([10,30,1]).rest.eq([30, 1]);
+    });
+
+  });
+
+  describe('.sort', function () {
+
+    it('should sort an array of numbers', function () {
+      ass([10,30,1]).sort().eq([1,10,30]);
+    });
+
+    it('should sort an array of strings by an expression', function () {
+      ass(['abc', 'a', 'ab']).sort(ass.size).eq(['a', 'ab', 'abc']);
+    });
+
+  });
+
+
 });
