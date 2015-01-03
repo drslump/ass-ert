@@ -1,4 +1,4 @@
-describe('Promise', function () {
+describe('Matchers: Promise', function () {
 
   var _ = require('lodash');
 

@@ -56,7 +56,7 @@ describe('Matchers: coordination', function () {
       ass('foo').or( ass.number, ass.empty, ass.size.eq(3) );
 
       ass(function () {
-        ass('foo').and( ass.number, ass.empty, ass.size.eq(10) );
+        ass('foo').or( ass.number, ass.empty, ass.size.eq(10) );
       }).raises(ass.Error);
 
     });
@@ -70,6 +70,32 @@ describe('Matchers: coordination', function () {
       ass.marks(1);
 
     });
+  });
+
+  describe('xor', function () {
+
+    it('should work with a single branch', function () {
+
+      ass(function () {
+        ass('foo').xor( ass.string );
+      }).raises(ass.Error);
+
+      ass(function () {
+        ass('foo').xor( ass.number );
+      }).raises(ass.Error);
+
+    });
+
+    it('should work with N branches', function () {
+
+      ass('foo').xor( ass.number, ass.empty, ass.size.eq(3) );
+
+      ass(function () {
+        ass('foo').xor( ass.string, ass.eq('foo'), ass.size.eq(3) );
+      }).raises(ass.Error);
+
+    });
+
   });
 
 });
