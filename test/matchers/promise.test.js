@@ -122,17 +122,17 @@ describe('Promise', function () {
         .string.eq('qux');
     });
 
-    it.skip('should support AND coordinator', function () {
+    it('should support AND combinator', function () {
       this.expected = 3;
       return ass(resolvedFoo).and(
         ass.promise.mark,
-        ass.resolves.equal('foo').mark,
-        ass.resolves.string.mark
+        ass.resolves.string.mark,
+        ass.resolves.equal('foo').mark
       );
     });
 
-    it.skip('should support OR coordinator', function () {
-      this.expected = 3;
+    it('should support OR combinator', function () {
+      this.expected = 1;
       return ass(resolvedFoo).or(
         ass.string.mark,
         ass.resolves.equal('bar').mark,
