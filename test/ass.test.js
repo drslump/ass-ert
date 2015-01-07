@@ -167,6 +167,12 @@ describe('ass', function () {
       ä( ass.ok(obj) ).is(obj);
     });
 
+    it('should support custom failure messages', function () {
+      ä(function () {
+        ass.ok(false, "custom message")
+      }).raises(ass.Error).prop('message').has('custom message');
+    });
+
   });
 
   describe('ko', function () {
@@ -184,7 +190,7 @@ describe('ass', function () {
 
     it('should raise error if not falsy', function () {
 
-      ass(function () {
+      ä(function () {
         ass.ko(true);
       }).raises(ass.Error);
 
@@ -193,6 +199,12 @@ describe('ass', function () {
     it('should return the original value', function () {
       var obj = null;
       ä( ass.ko(obj) ).is(obj);
+    });
+
+    it('should support custom failure messages', function () {
+      ä(function () {
+        ass.ok(false, "custom message")
+      }).raises(ass.Error).prop('message').has('custom message');
     });
 
   });
