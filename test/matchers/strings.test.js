@@ -1,5 +1,7 @@
 describe('Matchers: strings', function () {
 
+  require('Failure').patch(global, 'it');
+  
   var ass = require('../../');
 
   it('should equal', function () {

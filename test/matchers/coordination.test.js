@@ -1,5 +1,7 @@
 describe('Matchers: coordination', function () {
 
+  require('Failure').patch(global, 'it');
+
   var ass = require('../../');
 
 

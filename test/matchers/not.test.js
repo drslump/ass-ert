@@ -1,5 +1,7 @@
 describe('Matchers: not', function () {
 
+  require('Failure').patch(global, 'it');
+  
   var ass = require('../../');
 
   it('should negate the next expectation', function () {

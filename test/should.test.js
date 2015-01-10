@@ -1,5 +1,7 @@
 describe('should', function () {
 
+  require('Failure').patch(global, 'it');
+
   var ass = require('../');
   var assCheckShould = ass._(Object.prototype).prop('should').isa(ass.Chain).assert;
   var assCheckNotShould = ass._(Object.prototype).not.prop('should').assert;

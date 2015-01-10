@@ -1,5 +1,7 @@
 describe('ass', function () {
 
+  require('Failure').patch(global, 'it', 1);
+
   var ass = require('../');
   var ä = ass;  // used to tell apart assertions
 

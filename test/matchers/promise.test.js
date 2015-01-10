@@ -1,5 +1,7 @@
 describe('Matchers: Promise', function () {
 
+  require('Failure').patch(global, 'it');
+
   var _ = require('lodash');
 
   var ass = require('../../');

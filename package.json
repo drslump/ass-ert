@@ -14,8 +14,9 @@
     "url": "git@github.com:drslump/ass-ert.git"
   },
   "dependencies": {
-    "lodash": "^2.4.1",
-    "es6-promise": "^2.0.1"
+    "Failure": "git://github.com/drslump/failure.git",
+    "es6-promise": "^2.0.1",
+    "lodash": "^2.4.1"
   },
   "//": "NOTE: miller-rabin is explicetely provided to work-around a bug with browserify deps",
   "devDependencies": {
@@ -37,7 +38,7 @@
     "mocha": "global:Mocha"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha test/**",
+    "test": "node_modules/.bin/mocha -r test/bootstrap.js test",
     "karma": "npm run build-deps-debug && node_modules/.bin/karma start karma.conf.js",
     "build-deps-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.deps.js",
     "build-debug": "browserify main.js --debug --standalone ass --transform browserify-shim > dist/ass-ert.js",
