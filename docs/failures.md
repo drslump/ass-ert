@@ -10,22 +10,27 @@ easily readable messages is a top priority.
     for *But*, while inspected values are in cyan.
 
 ```bash
-AssError: ass([1,2,3]).all.number.above(3)
+AssError:
 
- Passed: For every one:
- Passed: to be a number
- Failed: to be more than <3>
-    But: was <1>
+ Failed: For every one:
+   Passed: to be a number
+   Failed: to be more than <3>
+      But: was <1>
 
- @ /Users/drslump/www/ass-ert/test.js:72:27
+  >> ass([1,2,3]).all.number.above(3)
 
- at Object.<anonymous> (/Users/drslump/www/ass-ert/test.js:72:27)
- at Module._compile (module.js:456:26)
+  at /Users/drslump/www/ass-ert/test.js:8:27
+  at it (/Users/drslump/www/ass-ert/test.js:4:3)
+  at Object.<anonymous> (/Users/drslump/www/ass-ert/test.js:7:1)
 ```
 
+!!! note
+    The printing of the source line that produced the error and the filtered
+    stack trace is provided by the [Failure](https://github.com/drslump/failure)
+    project. It's still kind of experimental but it should work fairly well on V8
+    based engines and Firefox.
+
 !!! attention
-    The printing of the actual expression code that produced the error and the
-    exact file location is something experimental and still on the works. It
-    won't work in all environments but V8 and Firefox at least should be covered.
-    It'll probably be released as a separate project so it can be easily used by
-    others.
+    In order to show the offending source line the code must be structured in a
+    very specific way, it matches the pattern used by the describe/it DSL from
+    most test frameworks, so it comes naturally when using *ass-ert* with them.

@@ -1,4 +1,4 @@
-var Failure = require('Failure');
+var Failure = require('failure');
 
 // Make sure tracking is enabled
 Failure.TRACK = true;

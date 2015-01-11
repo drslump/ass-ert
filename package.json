@@ -1,6 +1,6 @@
 {
   "name": "ass-ert",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
@@ -16,6 +16,7 @@
   "dependencies": {
     "Failure": "git://github.com/drslump/failure.git",
     "es6-promise": "^2.0.1",
+    "failure": "git://github.com/drslump/failure.git",
     "lodash": "^2.4.1"
   },
   "//": "NOTE: miller-rabin is explicetely provided to work-around a bug with browserify deps",
@@ -36,6 +37,11 @@
     "lodash": "global:_",
     "es6-promise": "global:window",
     "mocha": "global:Mocha"
+  },
+  "//": "Ignore optional node modules when bundling with browserify",
+  "browser": {
+    "mocha": false,
+    "tty": false
   },
   "scripts": {
     "test": "node_modules/.bin/mocha -r test/bootstrap.js test",

@@ -1,6 +1,6 @@
 describe('Chain', function () {
 
-  require('Failure').patch(global, 'it', 1);
+  require('failure').patch(global, 'it', 1);
 
   var ass = require('../');
 

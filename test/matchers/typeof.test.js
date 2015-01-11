@@ -1,6 +1,6 @@
 describe('Matchers: typeof', function () {
 
-  require('Failure').patch(global, 'it');
+  require('failure').patch(global, 'it');
   
   var ass = require('../../');
 
