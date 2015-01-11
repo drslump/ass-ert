@@ -62,9 +62,10 @@ describe('ass', function () {
     });
 
     it('should return asserted value', function () {
-      var exp = ass.$string;
+      var exp = ass.$object;
 
-      ä( exp('foo') ).is('foo');
+      var obj = {};
+      ä( exp(obj) ).is(obj);
 
       exp = ass.$eq('foo');
       ä( exp('foo') ).eq('foo');
