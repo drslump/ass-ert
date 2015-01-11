@@ -154,26 +154,32 @@ easily readable messages is a top priority.</p>
 <p>This actually has colors: green for <em>Passed</em>, red for <em>Failed</em> and yellow
 for <em>But</em>, while inspected values are in cyan.</p>
 </div>
-<pre><code class="bash">AssError: ass([1,2,3]).all.number.above(3)
+<pre><code class="bash">AssError:
 
- Passed: For every one:
- Passed: to be a number
- Failed: to be more than &lt;3&gt;
-    But: was &lt;1&gt;
+ Failed: For every one:
+   Passed: to be a number
+   Failed: to be more than &lt;3&gt;
+      But: was &lt;1&gt;
 
- @ /Users/drslump/www/ass-ert/test.js:72:27
+  &gt;&gt; ass([1,2,3]).all.number.above(3)
 
- at Object.&lt;anonymous&gt; (/Users/drslump/www/ass-ert/test.js:72:27)
- at Module._compile (module.js:456:26)
+  at /Users/drslump/www/ass-ert/test.js:8:27
+  at it (/Users/drslump/www/ass-ert/test.js:4:3)
+  at Object.&lt;anonymous&gt; (/Users/drslump/www/ass-ert/test.js:7:1)
 </code></pre>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The printing of the source line that produced the error and the filtered
+stack trace is provided by the <a href="https://github.com/drslump/failure">Failure</a>
+project. It's still kind of experimental but it should work fairly well on V8
+based engines and Firefox.</p>
+</div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>The printing of the actual expression code that produced the error and the
-exact file location is something experimental and still on the works. It
-won't work in all environments but V8 and Firefox at least should be covered.
-It'll probably be released as a separate project so it can be easily used by
-others.</p>
+<p>In order to show the offending source line the code must be structured in a
+very specific way, it matches the pattern used by the describe/it DSL from
+most test frameworks, so it comes naturally when using <em>ass-ert</em> with them.</p>
 </div>
 
             </div>
