@@ -176,23 +176,36 @@ the <em>expression</em>, which is an abstract form until it gets resolved.</p>
 <p>By using <code>.resolves</code> and <code>.rejects</code> we can attach <em>expectations</em> to a promise
 object, the <em>expression</em> will automatically enter the <em>async mode</em> and will
 subscribe itself to the promise object using its <code>.then</code> method. Once the promise
-is fulfilled (or rejected) the rest of the <em>expression</em> will continue resolving
+is fulfilled (or rejected) the rest of the <em>expression</em> will continue resolving,
 now using the value transfered by the promise.
 In other words, every <em>expectation</em> chained after <code>.resolves</code> or <code>.rejects</code> will
 be only tested once the promise is resolved and will mutate the subject value to
 be whatever the promise resolves to.</p>
+<p>Additionally since it's pretty common to check for equality there is a shortcut
+<em>matcher</em> named <code>.become()</code> that basically is the same as <code>.resolves.eq()</code>:</p>
+<pre><code class="js">ass(promise).become('foo')  // &lt;=&gt; ass(promise).resolve.eq('foo')
+</code></pre>
+
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>When working with <a href="http://mochajs.org">Mocha</a> or <a href="http://jasmine.github.io">Jasmine 2.x</a>
 we are allowed to return a promise from a test and have it consumed before the
-test ends. Just return any <em>ass</em> expression to have it evaluated (even if it's not
-asynchronous).</p>
+test ends. Just return any <em>ass</em> expression to have it evaluated (even if it's
+not asynchronous).</p>
 </div>
 <pre><code class="js">it('should fetch page asynchronously and test it', function () {
   var promise = $.get('http://google.com');
   return ass(promise).resolves.string.contains('&lt;body&gt;');
   // The test runner will wait here until promise is resolved and the
   // expression has completed.
+});
+</code></pre>
+
+<p>When the test runner doesn't support returning a Promise but has the concept of
+a <code>done</code> function, we can implement the test like so:</p>
+<pre><code class="js">it('should fetch page asynchronously and test it', function (done) {
+  var promise = $.get('http://google.com');
+  ass(promise).resolves.string.contains('&lt;body&gt;').notify(done).catch(done);
 });
 </code></pre>
 
