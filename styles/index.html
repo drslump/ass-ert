@@ -176,15 +176,15 @@ value by using <code>.value</code> or <code>.valueOf()</code>.</p>
 else cluttering its view. You can use <em>should style</em> expressions easily and
 they behave the same as the <em>expect style</em> ones.</p>
 <pre><code class="js">// Install .should on Object.prototype and assign the static interface to the
-// `should` variable. Additionally by passing a custom name it'll be used as
+// `ass` variable. Additionally by passing a custom name it'll be used as
 // property name instead of `should`.
 var ass = require('ass').should();  // NOTE: the function must be called!
 
 &quot;foo&quot;.should.be.a.string;
 [1,2,3].should.contain(2);
 
-// We can't use .should if the value is null or undefined
-ass(obj).be.null;
+// We can't use .should directly if the value is null or undefined
+ass(obj).should.be.null;
 
 // Unregister should from Object.prototype
 ass.should.restore();
