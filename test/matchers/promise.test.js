@@ -66,7 +66,7 @@ describe('Matchers: Promise', function () {
 
     beforeEach(function () {
       ass.marks();
-      this.expected = 1;
+      this.expected = 0;
     });
     afterEach(function () {
       if (this.currentTest.state === 'passed') {
@@ -74,7 +74,18 @@ describe('Matchers: Promise', function () {
       }
     });
 
+    it('should support done callback', function (done) {
+      ass(resolvedFoo).resolves.string.notify(done).catch(done);
+    });
+
+    it('should support done callback failures', function (done) {
+      this.expected = 1;
+      var failure = ass.isa(ass.Error).mark.notify(done).catch(done).$;
+      ass(resolvedFoo).resolves.number.notify(done).catch(failure);
+    });
+
     it('should check already resolved promises', function () {
+      this.expected = 1;
       return ass(resolvedFoo).resolves.eq('foo').size.eq(3).mark;
     });
 
@@ -82,17 +93,21 @@ describe('Matchers: Promise', function () {
       var p = defer();
       p.resolve('foo');
 
+      this.expected = 1;
       return ass(p).resolves.eq('foo').size.eq(3).mark;
     });
 
     it('should check pending promises', function () {
       var p = defer('foo', 1);
 
+      this.expected = 1;
       return ass(p).resolves.eq('foo').size.eq(3).mark;
     });
 
     it('should support negation', function () {
       var p = defer('foo');
+
+      this.expected = 1;
       return ass(p).not.resolves.mark.eq('BOO');
     });
 
@@ -140,6 +155,38 @@ describe('Matchers: Promise', function () {
         ass.resolves.equal('bar').mark,
         ass.resolves.string.mark
       );
+    });
+
+  });
+
+  describe('become', function () {
+
+    it('should work with resolved promises', function () {
+      return ass(resolvedFoo).become('foo');
+    });
+
+    it('should work with just resolved promises', function () {
+      var promise = defer();
+      promise.resolve('foo');
+      return ass(promise).become('foo');
+    });
+
+    it('should work with pending promises', function () {
+      var promise = defer();
+      _.delay(promise.resolve, 1, 'foo');
+      return ass(promise).become('foo');
+    });
+
+    it('should fail if not equal', function (done) {
+      ass(resolvedFoo).become('bar').catch(function (err) {
+        ass(err).isa(ass.Error).notify(done);
+      });
+    });
+
+    it('should fail with rejected promises', function (done) {
+      ass(rejectedFoo).become('foo').catch(function (err) {
+        ass(err).isa(ass.Error).notify(done);
+      });
     });
 
   });

@@ -35,17 +35,24 @@ it's part of the *expression* interface just like `.test` or `.assert`.
 By using `.resolves` and `.rejects` we can attach *expectations* to a promise
 object, the *expression* will automatically enter the *async mode* and will
 subscribe itself to the promise object using its `.then` method. Once the promise
-is fulfilled (or rejected) the rest of the *expression* will continue resolving
+is fulfilled (or rejected) the rest of the *expression* will continue resolving,
 now using the value transfered by the promise.
 In other words, every *expectation* chained after `.resolves` or `.rejects` will
 be only tested once the promise is resolved and will mutate the subject value to
 be whatever the promise resolves to.
 
+Additionally since it's pretty common to check for equality there is a shortcut
+*matcher* named `.become()` that basically is the same as `.resolves.eq()`:
+
+```js
+ass(promise).become('foo')  // <=> ass(promise).resolve.eq('foo')
+```
+
 !!! hint
     When working with [Mocha](http://mochajs.org) or [Jasmine 2.x](http://jasmine.github.io)
     we are allowed to return a promise from a test and have it consumed before the
-    test ends. Just return any *ass* expression to have it evaluated (even if it's not
-    asynchronous).
+    test ends. Just return any *ass* expression to have it evaluated (even if it's
+    not asynchronous).
 
 ```js
 it('should fetch page asynchronously and test it', function () {
@@ -53,5 +60,15 @@ it('should fetch page asynchronously and test it', function () {
   return ass(promise).resolves.string.contains('<body>');
   // The test runner will wait here until promise is resolved and the
   // expression has completed.
+});
+```
+
+When the test runner doesn't support returning a Promise but has the concept of
+a `done` function, we can implement the test like so:
+
+```js
+it('should fetch page asynchronously and test it', function (done) {
+  var promise = $.get('http://google.com');
+  ass(promise).resolves.string.contains('<body>').notify(done).catch(done);
 });
 ```
