@@ -1,7 +1,7 @@
-describe('Matchers: lodash', function () {
+describe('Matchers: lodash integration', function () {
 
   require('failure').patch(global, 'it');
-  
+
   var _ = require('lodash');
   var ass = require('../../');
 

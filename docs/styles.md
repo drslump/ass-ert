@@ -44,15 +44,15 @@ they behave the same as the *expect style* ones.
 
 ```js
 // Install .should on Object.prototype and assign the static interface to the
-// `should` variable. Additionally by passing a custom name it'll be used as
+// `ass` variable. Additionally by passing a custom name it'll be used as
 // property name instead of `should`.
 var ass = require('ass').should();  // NOTE: the function must be called!
 
 "foo".should.be.a.string;
 [1,2,3].should.contain(2);
 
-// We can't use .should if the value is null or undefined
-ass(obj).be.null;
+// We can't use .should directly if the value is null or undefined
+ass(obj).should.be.null;
 
 // Unregister should from Object.prototype
 ass.should.restore();

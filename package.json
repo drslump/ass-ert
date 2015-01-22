@@ -1,6 +1,6 @@
 {
   "name": "ass-ert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
@@ -18,9 +18,8 @@
     "failure": "git://github.com/drslump/failure.git",
     "lodash": "^2.4.1"
   },
-  "//": "NOTE: miller-rabin is explicetely provided to work-around a bug with browserify deps",
+  "//": "Ignore optional node modules when bundling with browserify",
   "devDependencies": {
-    "miller-rabin": "1.1.1",
     "browserify": "^7.0.3 < 8",
     "browserify-shim": "^3.8.1",
     "karma": "^0.12.28",
@@ -29,20 +28,22 @@
     "karma-cli": "0.0.4",
     "karma-mocha": "^0.1.10",
     "karma-sauce-launcher": "^0.2.10",
+    "miller-rabin": "1.1.1",
     "mocha": "^2.0.1",
+    "sinon": "^1.12.2",
     "uglify-js": "^2.4.16"
   },
   "browserify-shim": {
-    "lodash": "global:_",
     "es6-promise": "global:window",
-    "mocha": "global:Mocha"
+    "lodash": "global:_",
+    "mocha": "global:Mocha",
+    "sinon": "global:sinon"
   },
-  "//": "Ignore optional node modules when bundling with browserify",
   "browser": {
     "tty": false
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha -r test/bootstrap.js test",
+    "test": "node_modules/.bin/mocha --recursive -r test/bootstrap.js test",
     "karma": "npm run build-deps-debug && node_modules/.bin/karma start karma.conf.js",
     "build-deps-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.deps.js",
     "build-debug": "browserify main.js --debug --standalone ass --transform browserify-shim > dist/ass-ert.js",
