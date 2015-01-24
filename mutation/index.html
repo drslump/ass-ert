@@ -146,26 +146,25 @@
             <div class="section">
               <h1 id="mutating-the-subject">Mutating the subject</h1>
 <p>Often times we want to check a specific aspect of a value but when doing the
-processing manually we will loose the nice error descriptions given by the
-matchers.</p>
-<p><strong>ass</strong> integrates <a href="http://lodash.com">LoDash</a> to provide a powerful data manipulation
-mechanism with a known interface.</p>
+processing manually we will loose the nice error descriptions given by <em>ass</em>
+expressions.</p>
+<p><strong>ass</strong> integrates <a href="http://lodash.com">LoDash</a> to provide a powerful data
+manipulation mechanism with a known interface.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>When the subject is mutated it stays that way for the following
-matchers in the chain. If you have other needs check out the <code>.and</code>
-coordinator.</p>
+<p>When the subject is mutated it stays that way for the rest of the <em>expression</em>.
+If you have other needs check out the <code>.and</code> combinator.</p>
 </div>
-<pre><code class="js">ass(data).size.eq(10)          // a collection with a size of 10
-ass.pluck('name').has('Juan')  // finds a person named Juan!
+<pre><code class="js">ass(data).size.eq(10)                // a collection with a size of 10
+ass(data).pluck('name').has('Juan')  // contains a person named Juan!
 </code></pre>
 
-<p>While the expression evaluates the initial value under test may mutate but we
-can always get back the original by calling <code>.value</code>, if we're actually
-interested in the current one we can access it with <code>.mutation</code>.</p>
+<p>While the <em>expression</em> resolves the <em>subject</em> value under test may mutate but
+we can always get back the original by calling <code>.value</code>, if we're actually
+interested in the mutated one we can access it with <code>.result()</code>.</p>
 <pre><code class="js">var data = 'abcdef';
 ass(data).size.value === 'abcdef';
-ass(data).size.mutation === 6;
+ass(data).size.result() === 6;
 </code></pre>
 
 
