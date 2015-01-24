@@ -32,6 +32,18 @@ describe('Matchers: Promise', function () {
     return resolvedFoo;
   });
 
+  // Simplify marks checking
+  beforeEach(function () {
+    ass.marks();
+    this.currentTest.ctx.expected = 0;
+  });
+  afterEach(function () {
+    var test = this.currentTest;
+    if (test.state === 'passed') {
+      ass.marks(test.ctx.expected, test.title);
+    }
+  });
+
   describe('type', function () {
 
     it('should detect a promise', function () {
@@ -63,16 +75,6 @@ describe('Matchers: Promise', function () {
   });
 
   describe('fulfilled', function () {
-
-    beforeEach(function () {
-      ass.marks();
-      this.expected = 0;
-    });
-    afterEach(function () {
-      if (this.currentTest.state === 'passed') {
-        ass.marks(this.expected, this.currentTest.title);
-      }
-    });
 
     it('should support done callback', function (done) {
       ass(resolvedFoo).resolves.string.notify(done).catch(done);
@@ -187,6 +189,11 @@ describe('Matchers: Promise', function () {
       ass(rejectedFoo).become('foo').catch(function (err) {
         ass(err).isa(ass.Error).notify(done);
       });
+    });
+
+    it('should continue resolving', function () {
+      this.expected = 1;
+      return ass(resolvedFoo).become('foo').string.mark;
     });
 
   });

@@ -14,6 +14,7 @@ require('./lib/matchers/promise');
 // Bundle some of the internal stuff with the ass function
 ass.Chain = Chain;
 ass.Error = AssError;
+ass.patches = patches;
 
 // Forward the should installer
 // Note: make them arity-0 to allow beforeEach(ass.should) in Mocha
