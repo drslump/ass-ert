@@ -1,7 +1,7 @@
 describe('Matchers: strings', function () {
 
   require('failure').patch(global, 'it');
-  
+
   var ass = require('../../');
 
   it('should equal', function () {
@@ -19,5 +19,16 @@ describe('Matchers: strings', function () {
   it('should have a size', function () {
     ass('foo').size.eq(3);
   });
+
+  it('should match', function () {
+    ass('abc123').match(/\d$/);
+    ass('abc').not.match(/\d/);
+    ass('abc').match(function foo(v) {
+      return v.indexOf('a') >= 0;
+    });
+    ass('abc').match(ass.string);
+  });
+
+
 
 });
