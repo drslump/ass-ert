@@ -1,6 +1,6 @@
 {
   "name": "ass-ert",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
@@ -45,10 +45,10 @@
   "scripts": {
     "test": "node_modules/.bin/mocha --recursive -r test/bootstrap.js test",
     "karma": "npm run build-deps-debug && node_modules/.bin/karma start karma.conf.js",
-    "build-deps-debug": "browserify main.js --debug --standalone ass > dist/ass-ert.deps.js",
+    "build-deps-debug": "browserify main.js --debug --standalone ass --exclude mocha > dist/ass-ert.deps.js",
     "build-debug": "browserify main.js --debug --standalone ass --transform browserify-shim > dist/ass-ert.js",
     "build-min": "uglifyjs -c -o dist/ass-ert.min.js dist/ass-ert.js && uglifyjs -c -o dist/ass-ert.deps.min.js dist/ass-ert.deps.js",
-    "build": "npm run build-debug && npm run build-min",
+    "build": "npm run build-debug && npm run build-deps-debug && npm run build-min",
     "docs": "mkdocs gh-deploy --clean"
   },
   "keywords": [
