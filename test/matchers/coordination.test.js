@@ -39,6 +39,8 @@ describe('Matchers: coordination', function () {
 
     });
 
+    it.skip('should produce a nice failure');
+
   });
 
   describe('or', function () {
@@ -72,6 +74,9 @@ describe('Matchers: coordination', function () {
       ass.marks(1);
 
     });
+
+    it.skip('should produce a nice failure');
+
   });
 
   describe('xor', function () {
@@ -97,6 +102,8 @@ describe('Matchers: coordination', function () {
       }).raises(ass.Error);
 
     });
+
+    it.skip('should produce a nice failure');
 
   });
 

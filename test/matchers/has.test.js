@@ -38,4 +38,5 @@ describe('Matchers: has', function () {
     ass(subject).not.has({qux: ass.any});
   });
 
+  it.skip('should produce a nice failure');
 });

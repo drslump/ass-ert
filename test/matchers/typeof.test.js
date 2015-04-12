@@ -1,7 +1,7 @@
 describe('Matchers: typeof', function () {
 
   require('failure').patch(global, 'it');
-  
+
   var ass = require('../../');
 
   it('should detect the correct type', function () {
@@ -54,5 +54,7 @@ describe('Matchers: typeof', function () {
     ass(this).object;
     ass(this).not.plain;
   });
+
+  it.skip('should produce a nice failure');
 
 });

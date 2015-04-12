@@ -24,4 +24,6 @@ describe('Matchers: close', function () {
     ass('foo bar baz').close('boo bar baz');
   });
 
+  it.skip('should produce a nice failure');
+
 });

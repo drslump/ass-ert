@@ -29,6 +29,4 @@ describe('Matchers: strings', function () {
     ass('abc').match(ass.string);
   });
 
-
-
 });

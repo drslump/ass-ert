@@ -72,6 +72,8 @@ describe('Matchers: Promise', function () {
       ass(this.calls).eq(1);
     });
 
+    it.skip('should produce a nice failure');
+
   });
 
   describe('fulfilled', function () {
@@ -159,6 +161,8 @@ describe('Matchers: Promise', function () {
       );
     });
 
+    it.skip('should produce a nice failure');
+
   });
 
   describe('become', function () {
@@ -196,6 +200,8 @@ describe('Matchers: Promise', function () {
       return ass(resolvedFoo).become('foo').string.mark;
     });
 
+    it.skip('should produce a nice failure');
+
   });
 
   describe('rejected', function () {
@@ -217,6 +223,8 @@ describe('Matchers: Promise', function () {
 
       return ass(promise).rejects.eq('foo').size.eq(3);
     });
+
+    it.skip('should produce a nice failure');
 
   });
 
