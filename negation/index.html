@@ -167,6 +167,9 @@ ass('foo').not.string.equal('bar')
 // Here it works because we only have one expectation after .not
 ass('foo').not.equal('bar')
 
+// In some scenarios we can solve it by moving the `.not` to the right
+ass('foo').string.not.equal('bar')
+
 // By using composition we can also work around it
 ass('foo').not.eq( ass.string.equal('bar') )
 
