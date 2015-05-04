@@ -35,7 +35,7 @@ describe('Matchers: match', function () {
     });
 
     it('should match with sinon', function () {
-      var sinon = require('sinon');
+      var sinon = global.sinon || require('sinon');
       ass(subject).match(sinon.match.string);
     });
 
@@ -63,6 +63,29 @@ describe('Matchers: match', function () {
     });
 
     it.skip('should produce a nice failure');
+  });
+
+  describe('arrays', function () {
+    var subject = ['foo', 'bar', 'baz'];
+
+    it('should support same length', function () {
+      ass(subject).match([
+        'foo',
+        ass.string,
+        'baz'
+      ]);
+    });
+
+    it('should match start of', function () {
+      ass(subject).match([
+        ass.string.eq('foo')
+      ]);
+    });
+
+    it('should support undefined', function () {
+      ass(subject).match([, ass.string.eq('bar')]);
+    });
+
   });
 
 });
