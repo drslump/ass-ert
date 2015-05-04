@@ -30,6 +30,12 @@ module.exports = function(config) {
 
     browsers: ['Chrome', 'Firefox', 'sl_ie11', 'sl_ff30', 'sl_ios'],
 
+    // My home internet connection is really this bad :(
+    browserDisconnectTimeout: 10*1000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 4*60*1000,
+    captureTimeout: 4*60*1000,
+
     customLaunchers: {
       sl_ie8: {
         base: 'SauceLabs',
