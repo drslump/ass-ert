@@ -39,6 +39,10 @@ describe('Matchers: coordination', function () {
 
     });
 
+    it('should wrap values', function () {
+      ass('foo').and(ass.string, 'foo');
+    });
+
     it.skip('should produce a nice failure');
 
   });
@@ -73,6 +77,10 @@ describe('Matchers: coordination', function () {
 
       ass.marks(1);
 
+    });
+
+    it('should wrap values', function () {
+      ass('foo').or(ass.number, 'bar', 'foo');
     });
 
     it.skip('should produce a nice failure');
