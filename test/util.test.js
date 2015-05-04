@@ -54,7 +54,10 @@ describe('util', function () {
       fnDispName.displayName = 'fnDispName';
 
       asstpl(fn).eql('<function>');
-      asstpl(fnName).eql('fnName()');
+      asstpl(fnName).or(
+        'fnName()',
+        '<function>'  // IE: doesn't provide the function name
+      );
       asstpl(fnDispName).eql('fnDispName()');
     });
 
