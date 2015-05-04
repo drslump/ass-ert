@@ -1,8 +1,7 @@
 describe('Matchers: Sinon.js integration', function () {
 
-  var sinon = require('sinon');
+  var sinon = global.sinon || require('sinon');
   var ass = require('../../');
-
 
   it('should still support sinon matchers', function () {
      var spy = sinon.spy();

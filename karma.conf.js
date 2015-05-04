@@ -7,12 +7,10 @@ module.exports = function(config) {
     singleRun : true,
     autoWatch : true,
 
-    frameworks: [
-      'mocha',
-      'browserify'
-    ],
+    frameworks: ['mocha', 'browserify'],
 
     files: [
+      'node_modules/sinon/pkg/sinon.js',
       'test/**/*.js'
     ],
 
@@ -23,22 +21,24 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       configure: function (bro) {
-        // Mocha gets included in the bundle but it breaks the build
+        // Mocha is already included by Karma
         bro.exclude('mocha');
+        // We include Sinon as a global to test the patching mechanism
+        bro.exclude('sinon');
       }
     },
 
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox', 'sl_ie11', 'sl_ff30', 'sl_ios'],
 
     customLaunchers: {
-      // sl_ie_8_xp: {
-      //   base: 'SauceLabs',
-      //   browserName: 'internet explorer',
-      //   version: '8.0',
-      //   platform: 'Windows XP',
-      //   "record-video": false,
-      //   "record-screenshot": false
-      // },
+      sl_ie8: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        version: '8.0',
+        platform: 'Windows XP',
+        "record-video": false,
+        "record-screenshot": false
+      },
       sl_ie10: {
         base: 'SauceLabs',
         browserName: 'internet explorer',
@@ -47,14 +47,14 @@ module.exports = function(config) {
         "record-video": false,
         "record-screenshot": false
       },
-      // sl_ie11: {
-      //   base: 'SauceLabs',
-      //   browserName: 'internet explorer',
-      //   platform: 'Windows 8.1',
-      //   version: '11'
-      //   "record-video": false,
-      //   "record-screenshot": false
-      // },
+      sl_ie11: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 8.1',
+        version: '11',
+        "record-video": false,
+        "record-screenshot": false
+      },
       sl_ff30: {
         base: 'SauceLabs',
         browserName: 'firefox',
@@ -62,12 +62,12 @@ module.exports = function(config) {
         "record-video": false,
         "record-screenshot": false
       },
-      // sl_ios: {
-      //   base: 'SauceLabs',
-      //   browserName: 'iphone',
-      //   platform: 'OS X 10.9',
-      //   version: '7.1'
-      // },
+      sl_ios: {
+        base: 'SauceLabs',
+        browserName: 'iphone',
+        platform: 'OS X 10.9',
+        version: '7.1'
+      },
     }
 
   });
