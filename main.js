@@ -35,8 +35,12 @@ patches.lodash(require('lodash'));
 
 if (global.sinon && global.sinon.match) {
   patches.sinon(global.sinon);
-} else if (require.resolve && require.resolve('sinon')) {
-  patches.sinon(require('sinon'));
+} else if (require.resolve) {
+    try {
+      patches.sinon(require('sinon'));
+    } catch (e) {
+        // sinon is not installed
+    }
 }
 
 
