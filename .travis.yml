@@ -7,3 +7,8 @@ node_js:
 # Enable container-based builds
 sudo: false
 
+# Enable npm deps caching betweeen builds
+cache:
+  directories:
+    - node_modules
+
