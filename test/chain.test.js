@@ -71,7 +71,7 @@ describe('Chain', function () {
   describe('underscore', function () {
 
     it('should defer evaluation', function () {
-      ass.marks()
+      ass.marks();
 
       var ex = ass(true)._.mark.true;
       ass.marks(0);

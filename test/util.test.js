@@ -48,8 +48,8 @@ describe('util', function () {
     });
 
     it('should support functions', function () {
-      function fnName () {};
-      var fn = function () {}
+      function fnName () {}
+      var fn = function () {};
       var fnDispName = function () {};
       fnDispName.displayName = 'fnDispName';
 
@@ -70,6 +70,5 @@ describe('util', function () {
     it.skip('should support classes');
 
   });
-
 
 });
