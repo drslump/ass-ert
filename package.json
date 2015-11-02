@@ -1,6 +1,6 @@
 {
   "name": "ass-ert",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
