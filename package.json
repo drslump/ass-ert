@@ -1,6 +1,6 @@
 {
   "name": "ass-ert",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Fluently composable assertions library",
   "main": "main.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "es6-promise": "^2.0.1",
-    "failure": "git://github.com/drslump/failure.git#v0.1.0",
+    "failure": "git://github.com/drslump/failure.git#v0.1.3",
     "lodash": "^2.4.1"
   },
   "//": "Ignore optional node modules when bundling with browserify",
